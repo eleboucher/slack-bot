@@ -1,0 +1,37 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "ajAqUByI39Sfm99F/ZNOguPP3Mk=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "c3e18be99d19e6b3e8f1559eea2c161a665c4b6b",
+			"revisionTime": "2019-08-25T01:20:11Z"
+		},
+		{
+			"checksumSHA1": "iv5J/wfi3hIUZ9e9C1U/ETZuTIk=",
+			"path": "github.com/nlopes/slack",
+			"revision": "e5749f13b5af3c139165ab4180a95bb06a60128b",
+			"revisionTime": "2019-09-01T02:05:43Z"
+		},
+		{
+			"checksumSHA1": "DY2gOON8opda18Z2WGVMln4f/to=",
+			"path": "github.com/nlopes/slack/internal/errorsx",
+			"revision": "e5749f13b5af3c139165ab4180a95bb06a60128b",
+			"revisionTime": "2019-09-01T02:05:43Z"
+		},
+		{
+			"checksumSHA1": "DQyknBX6eTRG2cz+UuXxU9ZFqPQ=",
+			"path": "github.com/nlopes/slack/internal/timex",
+			"revision": "e5749f13b5af3c139165ab4180a95bb06a60128b",
+			"revisionTime": "2019-09-01T02:05:43Z"
+		},
+		{
+			"checksumSHA1": "gwieK+pNgdb6dgrdB8fynmN3mPg=",
+			"path": "github.com/nlopes/slack/slackutilsx",
+			"revision": "e5749f13b5af3c139165ab4180a95bb06a60128b",
+			"revisionTime": "2019-09-01T02:05:43Z"
+		}
+	],
+	"rootPath": "github.com/genesixx/slack-bot"
+}
