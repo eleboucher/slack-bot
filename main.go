@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"log"
+	"os"
 )
 
 var (
@@ -11,5 +12,5 @@ var (
 )
 
 func main() {
-	Run("")
+	Run(os.Getenv("SLACK_TOKEN"))
 }
