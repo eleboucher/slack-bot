@@ -1,5 +1,9 @@
 package bot
 
+import (
+	log "github.com/sirupsen/logrus"
+)
+
 type CMD struct {
 	Command         string
 	Option          string
@@ -34,16 +38,16 @@ func RegisterCommand(cmd, helper, description string, function cmdFunc) {
 
 func (b *Bot) handleCMD(cmd *CMD) {
 	c := commands[cmd.Command]
-	if c == nil {
-		logger.Printf("Command %s not found\n", cmd.Command)
-	}
 
-	logger.Printf("%#v\n", cmd)
+	if c == nil {
+		log.Error("Command %s not found\n", cmd.Command)
+	}
+	log.Info(c)
 
 	resp, err := c.function(cmd)
 
 	if err != nil {
-		logger.Printf("Command %s error: %s\n", cmd.Command, err)
+		log.Error("Command %s error: %s\n", cmd.Command, err)
 	}
 
 	b.sendResponse(resp)

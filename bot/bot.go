@@ -1,15 +1,10 @@
 package bot
 
 import (
-	"bytes"
-	"log"
-
 	"github.com/nlopes/slack"
 )
 
 var (
-	buf           bytes.Buffer
-	logger        = log.New(&buf, "logger: ", log.Lshortfile)
 	cmdPrefixes   = []string{"!"}
 	messageBuffer = 50
 )
@@ -57,6 +52,7 @@ func (b *Bot) sendResponse(resp *Response) {
 
 func (b *Bot) ReceiveMessage(req *Request) {
 	cmd := Parse(req)
+
 	if cmd == nil {
 		return
 	}

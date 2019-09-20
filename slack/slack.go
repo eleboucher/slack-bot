@@ -1,33 +1,32 @@
 package slack
 
 import (
-	"bytes"
-	"log"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/genesixx/slack-bot/bot"
 	"github.com/nlopes/slack"
 )
 
 var (
-	api    *slack.Client
-	rtm    *slack.RTM
-	buf    bytes.Buffer
-	logger = log.New(&buf, "logger: ", log.Lshortfile)
+	api *slack.Client
+	rtm *slack.RTM
 )
 
 func sendResponse(message *bot.Response) {
 	channel := message.Channel
-
+	message.Options = append(message.Options, slack.MsgOptionText(message.Message, false))
 	if message.ThreadTimestamp != "" {
 		message.Options = append(message.Options, slack.MsgOptionTS(message.Timestamp))
 	}
-	api.PostMessage(channel, message.Options...)
+	_, _, err := api.PostMessage(channel, message.Options...)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func Run(token string) {
 	api = slack.New(token)
 	rtm = api.NewRTM()
-
 	b := bot.New(sendResponse)
 
 	go rtm.ManageConnection()
@@ -35,7 +34,7 @@ func Run(token string) {
 	for msg := range rtm.IncomingEvents {
 		switch ev := msg.Data.(type) {
 		case *slack.ConnectedEvent:
-			logger.Println("Ready")
+			log.Info("Ready")
 		case *slack.MessageEvent:
 			if ev.Msg.User != "" {
 				b.ReceiveMessage(&bot.Request{
@@ -47,9 +46,9 @@ func Run(token string) {
 				})
 			}
 		case *slack.RTMError:
-			logger.Fatal(ev.Error())
+			log.Error(ev.Error())
 		case *slack.InvalidAuthEvent:
-			logger.Fatal("Invalid credentials")
+			log.Error("Invalid credentials")
 			return
 		}
 	}
