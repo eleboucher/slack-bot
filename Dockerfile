@@ -1,6 +1,6 @@
 FROM golang:1.13 as builder
 
-WORKDIR /go/src/app
+WORKDIR /go/src/github.com/genesixx/slack-bot
 
 COPY . .
 
