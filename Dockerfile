@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/genesixx/slack-bot
 COPY . .
 
 
-RUN go build -o /bin/main 
+RUN CGO_ENABLED=0 go build -o /bin/main 
 
 ##############################################
 
