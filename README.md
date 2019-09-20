@@ -13,7 +13,7 @@ go build
 ## Run tests
 
 ```sh
-go test
+go test ./...
 ```
 
 ## Author
