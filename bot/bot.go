@@ -1,8 +1,15 @@
-package main
+package bot
 
-import "github.com/nlopes/slack"
+import (
+	"bytes"
+	"log"
+
+	"github.com/nlopes/slack"
+)
 
 var (
+	buf           bytes.Buffer
+	logger        = log.New(&buf, "logger: ", log.Lshortfile)
 	cmdPrefixes   = []string{"!"}
 	messageBuffer = 50
 )
@@ -27,7 +34,7 @@ type Response struct {
 	User            string
 	Timestamp       string
 	ThreadTimestamp string
-	options         []slack.MsgOption
+	Options         []slack.MsgOption
 }
 
 type ResponseHandler func(message *Response)
@@ -48,7 +55,7 @@ func (b *Bot) sendResponse(resp *Response) {
 	b.handler(resp)
 }
 
-func (b *Bot) receiveMessage(req *Request) {
+func (b *Bot) ReceiveMessage(req *Request) {
 	cmd := Parse(req)
 	if cmd == nil {
 		return

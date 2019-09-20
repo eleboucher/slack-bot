@@ -1,16 +1,11 @@
 package main
 
 import (
-	"bytes"
-	"log"
 	"os"
-)
 
-var (
-	buf    bytes.Buffer
-	logger = log.New(&buf, "logger: ", log.Lshortfile)
+	"github.com/genesixx/slack-bot/slack"
 )
 
 func main() {
-	Run(os.Getenv("SLACK_TOKEN"))
+	slack.Run(os.Getenv("SLACK_TOKEN"))
 }

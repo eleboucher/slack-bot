@@ -1,28 +1,34 @@
-package main
+package slack
 
 import (
+	"bytes"
+	"log"
+
+	"github.com/genesixx/slack-bot/bot"
 	"github.com/nlopes/slack"
 )
 
 var (
-	api *slack.Client
-	rtm *slack.RTM
+	api    *slack.Client
+	rtm    *slack.RTM
+	buf    bytes.Buffer
+	logger = log.New(&buf, "logger: ", log.Lshortfile)
 )
 
-func sendResponse(message *Response) {
+func sendResponse(message *bot.Response) {
 	channel := message.Channel
 
 	if message.ThreadTimestamp != "" {
-		message.options = append(message.options, slack.MsgOptionTS(message.Timestamp))
+		message.Options = append(message.Options, slack.MsgOptionTS(message.Timestamp))
 	}
-	api.PostMessage(channel, message.options...)
+	api.PostMessage(channel, message.Options...)
 }
 
 func Run(token string) {
 	api = slack.New(token)
 	rtm = api.NewRTM()
 
-	bot := New(sendResponse)
+	b := bot.New(sendResponse)
 
 	go rtm.ManageConnection()
 
@@ -32,7 +38,7 @@ func Run(token string) {
 			logger.Println("Ready")
 		case *slack.MessageEvent:
 			if ev.Msg.User != "" {
-				bot.receiveMessage(&Request{
+				b.ReceiveMessage(&bot.Request{
 					Message:         ev.Msg.Text,
 					Channel:         ev.Msg.Channel,
 					User:            ev.Msg.User,

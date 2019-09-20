@@ -1,4 +1,4 @@
-package main
+package bot
 
 type CMD struct {
 	Command         string
