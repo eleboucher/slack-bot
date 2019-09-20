@@ -31,6 +31,12 @@
 			"path": "github.com/nlopes/slack/slackutilsx",
 			"revision": "e5749f13b5af3c139165ab4180a95bb06a60128b",
 			"revisionTime": "2019-09-01T02:05:43Z"
+		},
+		{
+			"checksumSHA1": "I7hloldMJZTqUx6hbVDp5nk9fZQ=",
+			"path": "github.com/pkg/errors",
+			"revision": "27936f6d90f9c8e1145f11ed52ffffbfdb9e0af7",
+			"revisionTime": "2019-02-27T00:00:51Z"
 		}
 	],
 	"rootPath": "github.com/genesixx/slack-bot"
