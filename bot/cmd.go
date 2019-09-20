@@ -40,14 +40,14 @@ func (b *Bot) handleCMD(cmd *CMD) {
 	c := commands[cmd.Command]
 
 	if c == nil {
-		log.Error("Command %s not found\n", cmd.Command)
+		log.Errorf("Command %s not found\n", cmd.Command)
 	}
 	log.Info(c)
 
 	resp, err := c.function(cmd)
 
 	if err != nil {
-		log.Error("Command %s error: %s\n", cmd.Command, err)
+		log.Errorf("Command %s error: %s\n", cmd.Command, err)
 	}
 
 	b.sendResponse(resp)
