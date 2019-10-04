@@ -39,6 +39,12 @@
 			"revisionTime": "2019-02-27T00:00:51Z"
 		},
 		{
+			"checksumSHA1": "X1qSgDLl994c/RhTFJWc9UPi1EA=",
+			"path": "github.com/robfig/cron",
+			"revision": "e843a09e5b2db454d77aad25b1660173445fb2fc",
+			"revisionTime": "2019-07-16T00:23:18Z"
+		},
+		{
 			"checksumSHA1": "4GI/G+nYyCQ3ltASSBIunUr2LYk=",
 			"path": "github.com/sirupsen/logrus",
 			"revision": "de736cf91b921d56253b4010270681d33fdf7cb5",
