@@ -22,12 +22,19 @@ type Cog struct {
 	function    cmdFunc
 }
 
+type PeriodicCog struct {
+	Function    func() (*Response, error)
+	CronSetting string
+}
+
 var (
-	commands = make(map[string]*Cog)
+	commands        = make(map[string]*Cog)
+	periodicCommand = make(map[string]*PeriodicCog)
 )
 
 //RegisterCommand Register command
 func RegisterCommand(cmd, helper, description string, function cmdFunc) {
+	log.Infof("Adding Command %s", cmd)
 	commands[cmd] = &Cog{
 		cmd:         cmd,
 		helper:      helper,
@@ -36,8 +43,16 @@ func RegisterCommand(cmd, helper, description string, function cmdFunc) {
 	}
 }
 
+func RegisterPeriodicCommand(cmd string, config *PeriodicCog) {
+	log.Infof("Adding Periodic Command %s", cmd)
+
+	periodicCommand[cmd] = config
+}
+
 func (b *Bot) handleCMD(cmd *CMD) {
 	c := commands[cmd.Command]
+
+	log.Infof("received new Command %#v", cmd)
 
 	if c == nil {
 		log.Errorf("Command %s not found\n", cmd.Command)
