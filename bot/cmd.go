@@ -75,9 +75,9 @@ func (b *Bot) handleCMD(cmd *CMD) {
 func (b *Bot) sendHelper(cmd *CMD) {
 	helper := "```\n"
 	helper += `
-	Bot Usage
+Bot Usage
 
-	Command:
+Command:
 	`
 
 	for _, cog := range commands {
