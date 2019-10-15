@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	api *slack.Client
+	API *slack.Client
 	rtm *slack.RTM
 )
 
@@ -18,15 +18,15 @@ func sendResponse(message *bot.Response) {
 	if message.ThreadTimestamp != "" {
 		message.Options = append(message.Options, slack.MsgOptionTS(message.Timestamp))
 	}
-	_, _, err := api.PostMessage(channel, message.Options...)
+	_, _, err := API.PostMessage(channel, message.Options...)
 	if err != nil {
 		log.Println(err)
 	}
 }
 
 func Run(token string) {
-	api = slack.New(token)
-	rtm = api.NewRTM()
+	API = slack.New(token)
+	rtm = API.NewRTM()
 	b := bot.New(sendResponse)
 
 	go rtm.ManageConnection()
