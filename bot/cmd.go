@@ -35,7 +35,7 @@ var (
 
 //RegisterCommand Register command
 func RegisterCommand(cmd, helper string, function cmdFunc) {
-	log.Infof("Adding Command %s", cmd)
+	log.Infof("Adding Command %s\n", cmd)
 	commands[cmd] = &Cog{
 		cmd:      cmd,
 		helper:   helper,
@@ -44,24 +44,23 @@ func RegisterCommand(cmd, helper string, function cmdFunc) {
 }
 
 func RegisterPeriodicCommand(cmd string, config *PeriodicCog) {
-	log.Infof("Adding Periodic Command %s", cmd)
+	log.Infof("Adding Periodic Command %s\n", cmd)
 
 	periodicCommand[cmd] = config
 }
 
 func (b *Bot) handleCMD(cmd *CMD) {
+	log.Infof("received new Command %s\n", cmd.Command)
 	if cmd.Command == "help" {
 		b.sendHelper(cmd)
 		return
 	}
-	c := commands[cmd.Command]
 
-	log.Infof("received new Command %#v", cmd)
+	c := commands[cmd.Command]
 
 	if c == nil {
 		log.Errorf("Command %s not found\n", cmd.Command)
 	}
-	log.Info(c)
 
 	resp, err := c.function(cmd)
 
