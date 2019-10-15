@@ -12,5 +12,5 @@ func hello(cmd *bot.CMD) (*bot.Response, error) {
 }
 
 func init() {
-	bot.RegisterCommand("hello", "just say hello", "Just saying hello", hello)
+	bot.RegisterCommand("hello", "just say hello", hello)
 }

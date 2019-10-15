@@ -1,6 +1,8 @@
 package bot
 
 import (
+	"fmt"
+
 	log "github.com/sirupsen/logrus"
 )
 
@@ -16,10 +18,9 @@ type CMD struct {
 type cmdFunc func(cmd *CMD) (*Response, error)
 
 type Cog struct {
-	cmd         string
-	helper      string
-	description string
-	function    cmdFunc
+	cmd      string
+	helper   string
+	function cmdFunc
 }
 
 type PeriodicCog struct {
@@ -33,13 +34,12 @@ var (
 )
 
 //RegisterCommand Register command
-func RegisterCommand(cmd, helper, description string, function cmdFunc) {
+func RegisterCommand(cmd, helper string, function cmdFunc) {
 	log.Infof("Adding Command %s", cmd)
 	commands[cmd] = &Cog{
-		cmd:         cmd,
-		helper:      helper,
-		description: description,
-		function:    function,
+		cmd:      cmd,
+		helper:   helper,
+		function: function,
 	}
 }
 
@@ -50,6 +50,10 @@ func RegisterPeriodicCommand(cmd string, config *PeriodicCog) {
 }
 
 func (b *Bot) handleCMD(cmd *CMD) {
+	if cmd.Command == "help" {
+		b.sendHelper(cmd)
+		return
+	}
 	c := commands[cmd.Command]
 
 	log.Infof("received new Command %#v", cmd)
@@ -65,5 +69,28 @@ func (b *Bot) handleCMD(cmd *CMD) {
 		log.Errorf("Command %s error: %s\n", cmd.Command, err)
 	}
 
+	b.sendResponse(resp)
+}
+
+func (b *Bot) sendHelper(cmd *CMD) {
+	helper := "```\n"
+	helper += `
+	Bot Usage
+
+	Command:
+	`
+
+	for _, cog := range commands {
+		cmd := fmt.Sprintf("%s:", cog.cmd)
+		helper += fmt.Sprintf("\t%-12s %s\n", cmd, cog.helper)
+	}
+	helper += "\n```"
+
+	resp := &Response{
+		Message:         helper,
+		Channel:         cmd.Channel,
+		Timestamp:       cmd.Timestamp,
+		ThreadTimestamp: cmd.ThreadTimestamp,
+	}
 	b.sendResponse(resp)
 }
