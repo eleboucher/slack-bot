@@ -1,4 +1,4 @@
-package cog
+package hello
 
 import "github.com/genesixx/slack-bot/bot"
 
