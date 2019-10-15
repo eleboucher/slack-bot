@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "6C3LYFDsp1HNrgzVxCcBlKCifC0=",
+			"path": "github.com/PuerkitoBio/goquery",
+			"revision": "3dcf72e6c17f694381a21592651ca1464ded0e10",
+			"revisionTime": "2019-01-09T23:07:04Z"
+		},
+		{
 			"checksumSHA1": "ajAqUByI39Sfm99F/ZNOguPP3Mk=",
 			"path": "github.com/gorilla/websocket",
 			"revision": "c3e18be99d19e6b3e8f1559eea2c161a665c4b6b",
