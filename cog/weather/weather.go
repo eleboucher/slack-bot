@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/genesixx/slack-bot/bot"
+	"github.com/eleboucher/slack-bot/bot"
 )
 
 func weather(cmd *bot.CMD) (*bot.Response, error) {

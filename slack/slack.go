@@ -3,8 +3,8 @@ package slack
 import (
 	log "github.com/sirupsen/logrus"
 
-	"github.com/genesixx/slack-bot/bot"
-	"github.com/nlopes/slack"
+	"github.com/eleboucher/slack-bot/bot"
+	"github.com/slack-go/slack"
 )
 
 var (

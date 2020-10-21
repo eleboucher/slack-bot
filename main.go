@@ -3,12 +3,13 @@ package main
 import (
 	"os"
 
-	_ "github.com/genesixx/slack-bot/cog/hello"
-	_ "github.com/genesixx/slack-bot/cog/weather"
-
-	"github.com/genesixx/slack-bot/slack"
-	"github.com/joho/godotenv"
 	log "github.com/sirupsen/logrus"
+
+	_ "github.com/eleboucher/slack-bot/cog/hello"
+	_ "github.com/eleboucher/slack-bot/cog/weather"
+
+	"github.com/eleboucher/slack-bot/slack"
+	"github.com/joho/godotenv"
 )
 
 func init() {

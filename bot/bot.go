@@ -1,9 +1,9 @@
 package bot
 
 import (
-	"github.com/nlopes/slack"
 	"github.com/robfig/cron"
 	log "github.com/sirupsen/logrus"
+	"github.com/slack-go/slack"
 )
 
 var (

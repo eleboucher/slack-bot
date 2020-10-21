@@ -1,6 +1,6 @@
 package hello
 
-import "github.com/genesixx/slack-bot/bot"
+import "github.com/eleboucher/slack-bot/bot"
 
 func hello(cmd *bot.CMD) (*bot.Response, error) {
 	return &bot.Response{

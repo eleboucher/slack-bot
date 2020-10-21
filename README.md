@@ -20,7 +20,7 @@ go test ./...
 
 👤 **Erwan Leboucher**
 
-- Github: [@genesixx](https://github.com/genesixx)
+- Github: [@eleboucher](https://github.com/eleboucher)
 
 ## Show your support
 
